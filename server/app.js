@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
@@ -189,6 +191,9 @@ app.delete("/api/cohorts/:cohortId", async (req, res) => {
     res.status(500).json({ errorMessage: err });
   }
 });
+
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes);
 
 // START SERVER
 app.listen(PORT, () => {
